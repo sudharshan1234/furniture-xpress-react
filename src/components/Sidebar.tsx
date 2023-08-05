@@ -1,15 +1,15 @@
-import React, { FC, useState } from "react";
-import logo from "../assets/logo.svg";
+import { FC } from "react";
+import logo from "../assets/FurnitureXPRESS.png";
 import { Link } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { FaTimes } from "react-icons/fa";
 import { links } from "../utils/constants";
-import styled from "styled-components";
 import CartButtons from "./CartButtons";
 import { useUserContext } from "../context/user_context";
 
 const Sidebar = () => {
   const { isSideBarOpen, closeSideBar } = useProductsContext();
+  const { myUser } = useUserContext();
 
   return (
     <div className="text-center">
@@ -19,7 +19,7 @@ const Sidebar = () => {
         }`}
       >
         <div className="flex justify-between items-center py-4 px-6">
-          <img src={logo} alt="comfy sloth logo" className="h-14" />
+          <img src={logo} alt="FurnitureXpress logo" className="h-14" />
           <button
             type="button"
             className="text-4xl bg-opacity-0 border-opacity-0  transition-all cursor-pointer text-red-dark mt-1 hover:text-red-light"
@@ -40,11 +40,13 @@ const Sidebar = () => {
               ></LinkItem>
             );
           })}
-          <LinkItem
-            text="checkout"
-            url="/checkout"
-            closeSideBar={closeSideBar}
-          ></LinkItem>
+          {myUser && (
+            <LinkItem
+              text="checkout"
+              url="/checkout"
+              closeSideBar={closeSideBar}
+            ></LinkItem>
+          )}
         </ul>
         <CartButtons style="my-8 mx-auto grid"></CartButtons>
       </aside>

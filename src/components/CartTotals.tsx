@@ -1,44 +1,48 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useCartContext } from '../context/cart_context'
-import { useUserContext } from '../context/user_context'
-import { formatPrice } from '../utils/helpers'
-import { Link } from 'react-router-dom'
+import { useCartContext } from "../context/cart_context";
+import { useUserContext } from "../context/user_context";
+import { formatPrice } from "../utils/helpers";
+import { Link } from "react-router-dom";
 
 const CartTotals = () => {
-  return <h4>cart totals</h4>
-}
+  const { total_amount, shipping_fee } = useCartContext();
+  const { myUser, loginWithRedirect } = useUserContext();
 
-const Wrapper = styled.section`
-  margin-top: 3rem;
-  display: flex;
-  justify-content: center;
-  article {
-    border: 1px solid var(--clr-grey-8);
-    border-radius: var(--radius);
-    padding: 1.5rem 3rem;
-  }
-  h4,
-  h5,
-  p {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-  }
-  p {
-    text-transform: capitalize;
-  }
-  h4 {
-    margin-top: 2rem;
-  }
-  @media (min-width: 776px) {
-    justify-content: flex-end;
-  }
-  .btn {
-    width: 100%;
-    margin-top: 1rem;
-    text-align: center;
-    font-weight: 700;
-  }
-`
+  return (
+    <section className="mt-12 flex justify-center md:justify-end">
+      <div>
+        <article className="border-[1px] border-solid border-grey-800 rounded py-6 px-12">
+          <h5 className="grid grid-cols-[200px_1fr]">
+            subtotal: <span>{formatPrice(total_amount)}</span>
+          </h5>
+          <p className="grid grid-cols-[200px_1fr] capitalize">
+            shipping fee: <span>{formatPrice(shipping_fee)}</span>
+          </p>
+          <hr />
+          <h4 className="grid grid-cols-[200px_1fr] mt-8">
+            order total: <span>{formatPrice(total_amount + shipping_fee)}</span>
+          </h4>
+        </article>
+        {myUser ? (
+          <Link
+            to="/checkout"
+            className="uppercase bg-primary-500 text-primary-1000 py-1 px-3 tracking-widest inline-block transition-all text-xs cursor-pointer shadow rounded border-opacity-0 hover:text-primary-100 hover:bg-primary-700 w-full mt-4 text-center font-bold"
+          >
+            proceed to checkout
+          </Link>
+        ) : (
+          <button
+            className="uppercase bg-primary-500 text-primary-1000 py-1 px-3 tracking-widest inline-block font-normal transition-all text-xs cursor-pointer shadow rounded border-opacity-0 hover:text-primary-100 hover:bg-primary-700"
+            type="button"
+            onClick={() => {
+              loginWithRedirect();
+            }}
+          >
+            login
+          </button>
+        )}
+      </div>
+    </section>
+  );
+};
 
-export default CartTotals
+export default CartTotals;

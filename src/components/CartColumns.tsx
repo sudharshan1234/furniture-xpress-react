@@ -1,34 +1,16 @@
-import React from 'react'
-import styled from 'styled-components'
-
 const CartColumns = () => {
-  return <h4>cart columns</h4>
-}
+  return (
+    <div className="hidden md:block">
+      <div className="grid grid-cols-[316px_1fr_1fr_1fr_auto] justify-items-center gap-x-4">
+        <h5 className="text-grey-500 font-normal capitalize">item</h5>
+        <h5 className="text-grey-500 font-normal capitalize">price</h5>
+        <h5 className="text-grey-500 font-normal capitalize">quantity</h5>
+        <h5 className="text-grey-500 font-normal capitalize">subtotal</h5>
+        <span className="w-8 h-8"></span>
+      </div>
+      <hr className="mt-4 mb-12" />
+    </div>
+  );
+};
 
-const Wrapper = styled.div`
-  display: none;
-  @media (min-width: 776px) {
-    display: block;
-    .content {
-      display: grid;
-      grid-template-columns: 316px 1fr 1fr 1fr auto;
-      justify-items: center;
-      column-gap: 1rem;
-      h5 {
-        color: var(--clr-grey-5);
-        font-weight: 400;
-      }
-    }
-
-    span {
-      width: 2rem;
-      height: 2rem;
-    }
-    hr {
-      margin-top: 1rem;
-      margin-bottom: 3rem;
-    }
-  }
-`
-
-export default CartColumns
+export default CartColumns;

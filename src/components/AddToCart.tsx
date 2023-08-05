@@ -1,13 +1,12 @@
-import React, { FC, useState } from "react";
-import styled from "styled-components";
+import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
 import { useCartContext } from "../context/cart_context";
 import AmountButtons from "./AmountButtons";
 import { SingleProduct } from "../context/products_context";
-import LinkBtn from "./LinkBtn";
 
 const AddToCart: FC<{ product: SingleProduct }> = ({ product }) => {
+  const { addToCart } = useCartContext();
   const { id, stock, colors } = product;
   const [mainColor, setMainColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
@@ -62,55 +61,19 @@ const AddToCart: FC<{ product: SingleProduct }> = ({ product }) => {
           decrease={decreaseAmount}
         ></AmountButtons>
 
-        <LinkBtn text="add to cart" url="/cart"></LinkBtn>
+        {/* <LinkBtn text="add to cart" url="/cart"></LinkBtn> */}
+        <Link
+          to="/cart"
+          className="uppercase bg-primary-500 text-primary-1000 py-1 px-3 tracking-widest inline-block font-normal transition-all text-xs cursor-pointer shadow rounded border-opacity-0 hover:text-primary-100 hover:bg-primary-700"
+          onClick={() => {
+            addToCart(id, mainColor, amount, product);
+          }}
+        >
+          add to cart
+        </Link>
       </div>
     </section>
   );
 };
 
-const Wrapper = styled.section`
-  margin-top: 2rem;
-  .colors {
-    display: grid;
-    grid-template-columns: 125px 1fr;
-    align-items: center;
-    margin-bottom: 1rem;
-    span {
-      text-transform: capitalize;
-      font-weight: 700;
-    }
-    div {
-      display: flex;
-    }
-  }
-  .color-btn {
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 50%;
-    background: #222;
-    margin-right: 0.5rem;
-    border: none;
-    cursor: pointer;
-    opacity: 0.5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    svg {
-      font-size: 0.75rem;
-      color: var(--clr-white);
-    }
-  }
-  .active {
-    opacity: 1;
-  }
-  .btn-container {
-    margin-top: 2rem;
-  }
-
-  .btn {
-    margin-top: 1rem;
-    width: 140px;
-  }
-`;
 export default AddToCart;
