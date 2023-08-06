@@ -5,7 +5,7 @@ import {
   REMOVE_CART_ITEM,
   TOGGLE_CART_ITEM_AMOUNT,
 } from "../actions";
-import { Products, SingleProduct } from "../context/products_context";
+import { SingleProduct } from "../context/products_context";
 
 const cart_reducer = (
   state: {

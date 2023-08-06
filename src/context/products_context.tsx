@@ -39,7 +39,7 @@ const ProductsContext = React.createContext<ProductsContext>({
   ...initialState,
   closeSideBar: () => {},
   openSideBar: () => {},
-  fetchSingleProduct: (url: string) => new Promise<void>(() => {}),
+  fetchSingleProduct: () => new Promise<void>(() => {}),
 });
 
 export const ProductsProvider: React.FC<Props> = ({ children }) => {

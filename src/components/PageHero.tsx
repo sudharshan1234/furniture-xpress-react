@@ -1,5 +1,4 @@
 import { FC } from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 const PageHero: FC<Props> = ({ title, product }) => {
   return (
