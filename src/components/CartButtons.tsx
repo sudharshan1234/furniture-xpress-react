@@ -7,7 +7,7 @@ import { useUserContext } from "../context/user_context";
 
 const CartButtons: FC<{ style: string }> = ({ style }) => {
   const { closeSideBar } = useProductsContext();
-  const { total_items } = useCartContext();
+  const { total_items, clearCart } = useCartContext();
   const { loginWithRedirect, myUser, logout } = useUserContext();
   return (
     <div className={`grid-cols-2 items-center w-56 ${style}`}>
@@ -31,6 +31,7 @@ const CartButtons: FC<{ style: string }> = ({ style }) => {
           type="button"
           className="flex items-center bg-opacity-0 border-opacity-0 text-2xl text-grey-100 cursor-pointer tracking-widest"
           onClick={() => {
+            clearCart();
             logout({ logoutParams: { returnTo: window.location.origin } });
           }}
         >
