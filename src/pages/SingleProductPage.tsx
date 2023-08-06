@@ -71,7 +71,13 @@ const SingleProductPage = () => {
               <p className="leading-loose max-w-[45em]">{description}</p>
               <p className="capitalize w-[300px] grid grid-cols-[125px_1fr]">
                 <span className="font-bold">Available: </span>
-                {stock > 0 ? "In Stock" : "Out of Stock"}
+                <span className="font-semibold">
+                  {stock > 0
+                    ? `In Stock (${stock} ${
+                        stock === 1 ? "item" : "items"
+                      } left)`
+                    : "Out of Stock"}
+                </span>
               </p>
               <p className="capitalize w-[300px] grid grid-cols-[125px_1fr]">
                 <span className="font-bold">SKU: </span>
