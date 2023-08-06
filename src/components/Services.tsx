@@ -9,7 +9,7 @@ const Services = () => {
             custom furniture <br />
             built only for you
           </h3>
-          <p className="mb-0 leading-relaxed text-primary-300">
+          <p className="mb-0 leading-relaxed text-primary-300 text-2xl">
             Discover bespoke pieces crafted exclusively for you. Elevate your
             space with personalized designs that reflect your style and vision.
             Experience the luxury of custom furniture, tailored to perfection.
@@ -21,7 +21,7 @@ const Services = () => {
             return (
               <article
                 key={id}
-                className="bg-primary-700 text-center py-10 px-8 rounded"
+                className="bg-primary-800 text-center py-10 px-8 rounded"
               >
                 <span className="w-16 h-16 grid my-0 mx-auto place-items-center mb-4 rounded bg-primary-1000 text-primary-100 text-3xl">
                   {icon}
@@ -29,7 +29,7 @@ const Services = () => {
                 <h4 className="text-primary-100 mb-8 text-4xl lg:text-5xl leading-none capitalize tracking-tighter">
                   {title}
                 </h4>
-                <p>{text}</p>
+                <p className="text-xl text-primary-100">{text}</p>
               </article>
             );
           })}

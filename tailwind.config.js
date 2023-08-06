@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require("tailwindcss/colors");
+
 export default {
   mode: "jit",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -11,16 +13,16 @@ export default {
     },
     colors: {
       primary: {
-        100: "#453227",
-        200: "#5f4435",
-        300: "#795744",
-        400: "#936a53",
-        500: "#ab7a5f",
-        600: "#b99179",
-        700: "#c5a491",
-        800: "#d1b6a8",
-        900: "#decbc0",
-        1000: "#eaded7",
+        100: "#e6e6e6",
+        200: "#cccccc",
+        300: "#b3b3b3",
+        400: "#999999",
+        500: "#A9A9A9", // Original Neutral Gray
+        600: "#8c8c8c",
+        700: "#737373",
+        800: "#595959",
+        900: "#404040",
+        1000: "#262626",
       },
       grey: {
         100: "#102a42",
@@ -42,6 +44,9 @@ export default {
       black: "#222",
     },
     extend: {
+      fontFamily: {
+        sans: ["Playfair Display", "sans-serif"],
+      },
       borderRadius: {
         none: "0",
         sm: ".125rem",
